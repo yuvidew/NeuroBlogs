@@ -81,7 +81,7 @@ const SignIn = () => {
               textContentType="emailAddress"
               value={form.email}
               onChangeText={(value) => setForm({ ...form, email: value })}
-              containerStyle="border-b-2 border-b-primary-700"
+              containerStyle="border-b-2 border-b-primary-700 bg-white"
             />
             <InputField
               label="Password"
@@ -89,7 +89,7 @@ const SignIn = () => {
               isPassword
               value={form.password}
               onChangeText={(value) => setForm({ ...form, password: value })}
-              containerStyle="border-b-2 border-b-primary-700"
+              containerStyle="border-b-2 border-b-primary-700 bg-white"
             />
           </View>
           <View className=" mt-3 gap-8 border-b border-secondary-200 pb-14">

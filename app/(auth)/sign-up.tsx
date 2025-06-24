@@ -115,7 +115,7 @@ const Signup = () => {
               placeholder='name'
               value={form.name}
               onChangeText={(value) => setForm({ ...form, name: value })}
-              containerStyle="border-b-2 border-b-primary-700"
+              containerStyle="border-b-2 border-b-primary-700 bg-white"
             />
             <InputField
               label='Email'
@@ -123,7 +123,7 @@ const Signup = () => {
               textContentType="emailAddress"
               value={form.email}
               onChangeText={(value) => setForm({ ...form, email: value })}
-              containerStyle="border-b-2 border-b-primary-700"
+              containerStyle="border-b-2 border-b-primary-700 bg-white"
             />
             <InputField
               label='Password'
@@ -131,7 +131,7 @@ const Signup = () => {
               isPassword
               value={form.password}
               onChangeText={(value) => setForm({ ...form, password: value })}
-              containerStyle="border-b-2 border-b-primary-700"
+              containerStyle="border-b-2 border-b-primary-700 bg-white"
             />
 
           </View>
