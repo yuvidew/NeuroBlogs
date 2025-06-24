@@ -1,0 +1,160 @@
+[
+    {
+        "category": "Personal Development",
+        "description": [
+            "Self-growth",
+            "Motivation",
+            "Habits",
+            "Productivity",
+            "Mental health"
+        ],
+        "image" : "https://i.pinimg.com/736x/43/f9/17/43f917a9f6c982325e90737f3f95c4aa.jpg"
+    },
+    {
+        "category": "Technology & Coding",
+        "description": [
+            "Programming tutorials",
+            "Tech news",
+            "App development",
+            "Tools",
+            "Trends"
+        ],
+        "image" : "https://i.pinimg.com/736x/57/46/8d/57468d8387042651790a73ade6a0d224.jpg"
+    },
+    {
+        "category": "Career & Education",
+        "description": [
+            "Job tips",
+            "Resume building",
+            "Internships",
+            "Online learning",
+            "Study hacks"
+        ],
+        "image" :"https://i.pinimg.com/736x/c2/54/f1/c254f105fcac7a1255af3ef7c8059217.jpg"
+    },
+    {
+        "category": "Health & Wellness",
+        "description": [
+            "Fitness",
+            "Nutrition",
+            "Mindfulness",
+            "Self-care",
+            "Mental health tips"
+        ],
+        "image" : "https://i.pinimg.com/736x/76/bb/d7/76bbd7bcd53fa1d90d9fd1ef51122a46.jpg"
+    },
+    {
+        "category": "Lifestyle",
+        "description": [
+            "Daily routines",
+            "Home organization",
+            "Fashion",
+            "Relationships",
+            "Life hacks"
+        ],
+        "image" : "https://i.pinimg.com/736x/f7/6b/9b/f76b9bcb5755af7a88a9aa47420654ae.jpg"
+    },
+    {
+        "category": "Finance & Money",
+        "description": [
+            "Budgeting",
+            "Saving",
+            "Investing",
+            "Personal finance",
+            "Freelancing income tips"
+        ],
+        "image" : "https://i.pinimg.com/736x/4e/e8/de/4ee8de1944a5f1f7daf247a292319f76.jpg"
+    },
+    {
+        "category": "Business & Startups",
+        "description": [
+            "Entrepreneurship",
+            "Business ideas",
+            "Growth strategies",
+            "Case studies"
+        ],
+        "image" : "https://i.pinimg.com/736x/32/6a/57/326a570229e29cde1c112a829a588b94.jpg"
+    },
+    {
+        "category": "Travel",
+        "description": [
+            "Destinations",
+            "Travel guides",
+            "Remote work",
+            "Budget travel",
+            "Experiences"
+        ],
+        "image" : "https://i.pinimg.com/736x/2d/8d/3f/2d8d3fed6f21faa2e6fbd0a83f37fc22.jpg"
+    },
+    {
+        "category": "Creative & Design",
+        "description": [
+            "Graphic design",
+            "UX/UI",
+            "Writing",
+            "Photography",
+            "Digital art"
+        ],
+        "image" : "https://i.pinimg.com/736x/13/67/c6/1367c637abc872adbe5da9991a9b7729.jpg"
+    },
+    {
+        "category": "Marketing & SEO",
+        "description": [
+            "Content creation",
+            "Social media marketing",
+            "Email campaigns",
+            "SEO tactics"
+        ],
+        "image" : "https://i.pinimg.com/736x/ee/a4/07/eea4072c1b4c1648ac3bdbdf611ee733.jpg"
+    },
+    {
+        "category": "Productivity & Tools",
+        "description": [
+            "Best tools",
+            "Apps",
+            "Time management techniques",
+            "Routines"
+        ],
+        "image" : "https://i.pinimg.com/736x/f5/0f/08/f50f08afeffc4721f92ae06e4bf09340.jpg"
+    },
+    {
+        "category": "Book & Media Reviews",
+        "description": [
+            "Book summaries",
+            "Recommendations",
+            "Movies",
+            "Podcasts",
+            "Documentaries"
+        ],
+        "image" : "https://i.pinimg.com/736x/7c/fe/4a/7cfe4a7e0f57fd091b2cd860db4904bf.jpg"
+    },
+    {
+        "category": "Food & Recipes",
+        "description": [
+            "Cooking tips",
+            "Easy recipes",
+            "Healthy meals",
+            "Meal planning"
+        ],
+        "image" : "https://i.pinimg.com/736x/9f/85/64/9f8564de8a3805d9bf5f9175e727f34b.jpg"
+    },
+    {
+        "category": "Parenting & Family",
+        "description": [
+            "Tips for parents",
+            "Family routines",
+            "Child development",
+            "Family travel"
+        ],
+        "image" : "https://i.pinimg.com/736x/88/ce/6a/88ce6a470bfe6a3037bf464e7fd0adb0.jpg"
+    },
+    {
+        "category": "News & Opinions",
+        "description": [
+            "Commentary on current events",
+            "Trending topics",
+            "Thoughtful essays"
+        ],
+        "image" : "https://i.pinimg.com/736x/77/f3/a8/77f3a883b47a948da8e18b282fbcf7d5.jpg"
+    }
+]
