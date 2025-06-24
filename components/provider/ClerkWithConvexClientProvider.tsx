@@ -1,4 +1,3 @@
-
 import React, { ReactNode } from 'react';
 import { ClerkLoaded, ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import { tokenCache } from '@clerk/clerk-expo/token-cache'
@@ -17,6 +16,18 @@ if (!clerkPublishableKey) {
 }
 
 LogBox.ignoreLogs(['clerk: The `useClerk` hook is not available in the Expo Go app.']);
+
+/**
+ * Provides Clerk authentication and Convex client context to its children.
+ * 
+ * This provider wraps the application with ClerkProvider for authentication,
+ * ConvexProviderWithClerk for Convex backend integration, and ensures that
+ * children are only rendered after Clerk has loaded.
+ *
+ * @param children - The React node(s) to be rendered within the provider context.
+ */
+
+
 
 export const ClerkClientProvider = ({ children }: { children: ReactNode }) => {
     return (
