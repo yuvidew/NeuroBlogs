@@ -1,18 +1,18 @@
+import OAuth from "@/app/(auth)/_components/OAuth";
+import CustomButton from "@/components/CustomButton";
 import { icons } from "@/constants/icons";
 import { useSignIn } from "@clerk/clerk-expo";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Image,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import InputField from "./_components/InputField";
-import CustomButton from "@/components/CustomButton";
-import OAuth from "@/app/(auth)/_components/OAuth";
+import InputField from "../../components/InputField";
 
 /**
  * SignIn component for handling user authentication.
@@ -81,6 +81,7 @@ const SignIn = () => {
               textContentType="emailAddress"
               value={form.email}
               onChangeText={(value) => setForm({ ...form, email: value })}
+              containerStyle="border-b-2 border-b-primary-700"
             />
             <InputField
               label="Password"
@@ -88,6 +89,7 @@ const SignIn = () => {
               isPassword
               value={form.password}
               onChangeText={(value) => setForm({ ...form, password: value })}
+              containerStyle="border-b-2 border-b-primary-700"
             />
           </View>
           <View className=" mt-3 gap-8 border-b border-secondary-200 pb-14">

@@ -6,7 +6,7 @@ import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
 import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ReactNativeModal } from "react-native-modal"
-import InputField from './_components/InputField'
+import InputField from '../../components/InputField'
 import OTPInputField from './_components/OTPInputField'
 
 
@@ -115,6 +115,7 @@ const Signup = () => {
               placeholder='name'
               value={form.name}
               onChangeText={(value) => setForm({ ...form, name: value })}
+              containerStyle="border-b-2 border-b-primary-700"
             />
             <InputField
               label='Email'
@@ -122,6 +123,7 @@ const Signup = () => {
               textContentType="emailAddress"
               value={form.email}
               onChangeText={(value) => setForm({ ...form, email: value })}
+              containerStyle="border-b-2 border-b-primary-700"
             />
             <InputField
               label='Password'
@@ -129,6 +131,7 @@ const Signup = () => {
               isPassword
               value={form.password}
               onChangeText={(value) => setForm({ ...form, password: value })}
+              containerStyle="border-b-2 border-b-primary-700"
             />
 
           </View>
