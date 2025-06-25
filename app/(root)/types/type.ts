@@ -21,3 +21,9 @@ export interface TabIconProps {
     title?: string;
     size?: string;
 }
+
+export interface GenerateBlogFormType {
+    title : string,
+    category  :string,
+    content : string
+}
