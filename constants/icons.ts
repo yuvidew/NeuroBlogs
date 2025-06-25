@@ -30,9 +30,11 @@ const camera = require("@/assets/icons/camera.png");
 const gallery = require("@/assets/icons/gallery.png");
 const remove = require("@/assets/icons/delete.png");
 const edit = require("@/assets/icons/edit.png");
-const ai = require("@/assets/icons/magic.png")
+const ai = require("@/assets/icons/magic.png");
+const loader = require("@/assets/icons/loading.png")
 
 export const icons = {
+    loader,
     ai,
     bell,
     edit,
