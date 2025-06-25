@@ -29,9 +29,11 @@ const uploadImage = require("@/assets/icons/upload_image.png");
 const camera = require("@/assets/icons/camera.png");
 const gallery = require("@/assets/icons/gallery.png");
 const remove = require("@/assets/icons/delete.png");
-const edit = require("@/assets/icons/edit.png")
+const edit = require("@/assets/icons/edit.png");
+const ai = require("@/assets/icons/magic.png")
 
 export const icons = {
+    ai,
     bell,
     edit,
     camera,
