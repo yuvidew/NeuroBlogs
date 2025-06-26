@@ -2,6 +2,9 @@ import { useState } from "react";
 import { generateText } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { GenerateBlogFormType } from "../types/type";
+import { useCreatedBlogStorage } from "@/store/useCreatedBlogStorage";
+import { BlogSchema, extractJsonFromText } from "@/utils/ConvertJSONToObject";
+import { router } from "expo-router";
 
 if (typeof structuredClone === "undefined") {
     (globalThis as any).structuredClone = function <T>(obj: T): T {
@@ -11,42 +14,46 @@ if (typeof structuredClone === "undefined") {
 
 
 
-//TODO : check the api key
 const google = createGoogleGenerativeAI({
     apiKey: "AIzaSyBmpGXE75P5FY5WcDd5JNg_vE_N8YvuyUQ",
 });
+
+
 /**
- * Custom React hook to generate a blog post using an AI model (Google Gemini).
- * Handles loading state and provides a function to trigger blog generation based on form input.
- *
+ * Custom React hook to generate a blog post using AI (Google Gemini model).
+ * 
+ * This hook provides a function to generate a blog post based on user input,
+ * validates the AI output against a schema, and manages loading and error states.
+ * 
  * @returns {Object} An object containing:
- *   - onGenerateBlog: Function to generate a blog post from the provided form data.
- *   - loading: Boolean indicating if the generation is in progress.
- *
- * @param {GenerateBlogFormType} form - The form data containing title, category, and content guidelines/topics for the blog post.
+ *   - onGenerateBlog: Function to trigger blog generation.
+ *   - loading: Boolean indicating if generation is in progress.
+ *   - error: Error state object with `error` and `message`.
+ *   - setError: Function to manually set the error state.
+ * 
+ * @param {GenerateBlogFormType} form - The form data containing title, category, and content guidelines for the blog post.
  */
+
+
 
 export const useAiGenerateBlog = () => {
     const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<{ error: boolean, message: string }>({ error: true, message: "" })
+    const { onBlog } = useCreatedBlogStorage()
+    
     /**
-     * Custom React hook for generating a blog post using an AI model.
-     *
-     * This hook provides a function to generate a blog post based on user input,
-     * sending a prompt to an AI model and handling the loading state.
+     * Custom React hook for generating a blog post using an AI model based on user-provided form data.
+     * Handles loading state, error management, and blog validation/storage.
      *
      * @returns {Object} An object containing:
-     *   - onGenerateBlog: Function to trigger blog generation.
+     *   - onGenerateBlog: Function to trigger blog generation from form input.
      *   - loading: Boolean indicating if the generation is in progress.
+     *   - error: Error state and message.
+     *   - setError: Function to manually set the error state.
      *
-     * @remarks
-     * The generated blog post is expected to be a JSON object with `title`, `category`, and `content` fields.
-     *
-     * @example
-     * const { onGenerateBlog, loading } = useAiGenerateBlog();
-     * onGenerateBlog({ title: "AI in 2024", category: "Technology", content: "Latest trends..." });
-     *
-     * @param onGenerateBlog - Function to generate a blog post.
-     * @param onGenerateBlog.form - The form data containing title, category, and content guidelines.
+     * @param onGenerateBlog - (form: GenerateBlogFormType) => Promise<void>
+     *   Triggers the AI blog generation process.
+     *   @param form - The form data containing title, category, and content guidelines for the blog post.
      */
 
     const onGenerateBlog = async (form: GenerateBlogFormType) => {
@@ -82,15 +89,49 @@ export const useAiGenerateBlog = () => {
                 prompt,
             });
 
-            console.log("the generated result", response.text);
 
-            //TODO : to add the response.text in the zustand
+            const rawText = response.text;
 
+            let parsed;
+            try {
+                const jsonText = extractJsonFromText(rawText);
+                parsed = JSON.parse(jsonText);
+            } catch (jsonError) {
+                setError({
+                    error: false,
+                    message: "Failed to parse JSON from AI output."
+                })
+                console.log(`Failed to parse JSON from AI output. Raw output: ${rawText}`);
+            }
+            
+            try {
+                const validated = BlogSchema.parse(parsed);
+                onBlog(validated);
+                // console.log("validated" , validated);
+                router.replace("/(root)/publish-blog/publish-blog")
+            } catch (zodError) {
+                setError({
+                    error: false,
+                    message: "JSON shape is invalid."
+                })
+                console.log(`JSON shape is invalid: ${JSON.stringify(parsed)}`);
+            }
         } catch (error) {
+            onBlog({
+                title: "",
+                category: "",
+                content: ""
+            })
+
+            setError({
+                error: false,
+                message: "Failed to generate blog."
+            })
             console.log("send error from :", error);
         } finally {
             setLoading(false)
         }
     };
-    return { onGenerateBlog, loading };
+
+    return { onGenerateBlog, loading , error , setError};
 };
