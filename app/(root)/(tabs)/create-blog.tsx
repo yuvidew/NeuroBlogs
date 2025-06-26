@@ -8,11 +8,13 @@ import InputField from '@/components/InputField'
 import SelectField from '../_components/SelectField'
 import CustomButton from '@/components/CustomButton'
 import { useAiGenerateBlog } from '../hooks/useAiGenerateBlog'
+import { ReactNativeModal } from "react-native-modal"
+import { Link } from 'expo-router'
 
 //TODO : add the redirect function which is redirect the publice pa
 
 const CreateBlog = () => {
-  const {onGenerateBlog , loading} = useAiGenerateBlog()
+  const { onGenerateBlog, loading, error, setError } = useAiGenerateBlog()
   const [form, setForm] = useState({
     title: "",
     category: "",
@@ -65,7 +67,7 @@ const CreateBlog = () => {
           label='Select category'
           labelStyle=' text-xl'
           selectValue={form.category}
-          onSelectValue={(value) => setForm({...form , category : value})}
+          onSelectValue={(value) => setForm({ ...form, category: value })}
         />
         {/* end to select category */}
 
@@ -81,22 +83,44 @@ const CreateBlog = () => {
           inputStyle="font-JakartaMedium h-72 pt-3"
           multiline
           numberOfLines={6}
-          style = {{textAlignVertical : "top"}}
+          style={{ textAlignVertical: "top" }}
         />
 
         {/* end to title */}
       </View>
 
       <CustomButton
-        disabled = {!form.category || !form.content || !form.title}
+        disabled={!form.category || !form.content || !form.title}
         title='Generate blog'
         IconLeft={<Image source={icons.ai} tintColor={"#fff"} className=' size-8 mr-1' />}
         className=' rounded-md'
         bgVariant={(!form.category || !form.content || !form.title) ? "secondary" : "primary"}
-        loading = {loading}
+        loading={loading}
         onPress={() => onGenerateBlog(form)}
       />
       {/* end to form */}
+
+      <Link href={"/(root)/publish-blog/publish-blog"}>Publish blog</Link>
+
+      {/* start to modal */}
+      <ReactNativeModal isVisible={!error.error}>
+        <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
+          <Text className="text-2xl font-JakartaExtraBold text-secondary-900 mb-2">
+            Error
+          </Text>
+
+          <Text className="font-Jakarta mb-5 text-red-500 text-ms mt-1">
+            {error.message}
+          </Text>
+
+          <CustomButton
+              title="Cancel"
+              onPress={() => setError({error : false , message : ""})}
+              className="mt-5 bg-secondary-900 rounded-full"
+            />
+        </View>
+      </ReactNativeModal>
+      {/* end to modal */}
     </SafeAreaView>
   )
 }
