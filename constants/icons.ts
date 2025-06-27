@@ -32,9 +32,11 @@ const remove = require("@/assets/icons/delete.png");
 const edit = require("@/assets/icons/edit.png");
 const ai = require("@/assets/icons/magic.png");
 const loader = require("@/assets/icons/loading.png");
-const cancel = require("@/assets/icons/cancel.png")
+const cancel = require("@/assets/icons/cancel.png");
+const ImgEdit = require("@/assets/icons/edit-image.png")
 
 export const icons = {
+    ImgEdit,
     cancel,
     loader,
     ai,
