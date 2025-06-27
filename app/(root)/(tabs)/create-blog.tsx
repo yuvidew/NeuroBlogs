@@ -9,9 +9,7 @@ import SelectField from '../_components/SelectField'
 import CustomButton from '@/components/CustomButton'
 import { useAiGenerateBlog } from '../hooks/useAiGenerateBlog'
 import { ReactNativeModal } from "react-native-modal"
-import { Link } from 'expo-router'
 
-//TODO : add the redirect function which is redirect the publice pa
 
 const CreateBlog = () => {
   const { onGenerateBlog, loading, error, setError } = useAiGenerateBlog()
@@ -100,8 +98,6 @@ const CreateBlog = () => {
       />
       {/* end to form */}
 
-      <Link href={"/(root)/publish-blog/publish-blog"}>Publish blog</Link>
-
       {/* start to modal */}
       <ReactNativeModal isVisible={!error.error}>
         <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
@@ -115,7 +111,7 @@ const CreateBlog = () => {
 
           <CustomButton
               title="Cancel"
-              onPress={() => setError({error : false , message : ""})}
+              onPress={() => setError({error : true , message : ""})}
               className="mt-5 bg-secondary-900 rounded-full"
             />
         </View>
