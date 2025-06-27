@@ -1,7 +1,7 @@
-import { Animated, Image, Text, TouchableOpacity } from 'react-native'
-import React, { useEffect, useRef } from 'react';
+import { Text, TouchableOpacity } from 'react-native'
+import React from 'react';
 import { ButtonProps } from '@/types/type';
-import { icons } from '@/constants/icons';
+import Spinner from './Spinner';
 
 
 /**
@@ -76,26 +76,7 @@ const CustomButton = ({
     loading = false,
     ...props
 }: ButtonProps) => {
-    const rotateAnim = useRef(new Animated.Value(0)).current;
 
-    useEffect(() => {
-        if (loading) {
-            Animated.loop(
-                Animated.timing(rotateAnim, {
-                    toValue: 1,
-                    duration: 1000,
-                    useNativeDriver: true,
-                })
-            ).start();
-        } else {
-            rotateAnim.stopAnimation();
-        }
-    }, [loading]);
-
-    const rotateInterpolate = rotateAnim.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg'],
-    });
     return (
         <TouchableOpacity
             onPress={onPress}
@@ -103,12 +84,7 @@ const CustomButton = ({
             {...props}
         >
             {loading ?
-                <Animated.Image
-                    source={icons.loader}
-                    style={[{ transform: [{ rotate: rotateInterpolate }] }]}
-                    tintColor="#fff"
-                    className={"size-6"}
-                />
+                <Spinner loading = {loading} />
                 :
                 <>
                     {IconLeft}
