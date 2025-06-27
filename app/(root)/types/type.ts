@@ -27,3 +27,7 @@ export interface GenerateBlogFormType {
     category  :string,
     content : string
 }
+
+export interface imagesListType {
+    img_url : string
+}
