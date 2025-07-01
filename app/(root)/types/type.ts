@@ -25,7 +25,9 @@ export interface TabIconProps {
 export interface GenerateBlogFormType {
     title : string,
     category  :string,
-    content : string
+    content : string,
+    tags : string[],
+    slug : string
 }
 
 export interface imagesListType {
