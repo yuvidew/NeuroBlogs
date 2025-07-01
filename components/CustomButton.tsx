@@ -74,14 +74,16 @@ const CustomButton = ({
     IconRight,
     className,
     loading = false,
+    disabled,
     ...props
 }: ButtonProps) => {
 
     return (
         <TouchableOpacity
             onPress={onPress}
-            className={` p-3 flex flex-row justify-center items-center shadow-md shadow-neutral-400/70 h-16 ${getBgVariantStyle(bgVariant)} ${className}`}
+            className={` p-3 flex flex-row justify-center items-center shadow-md shadow-neutral-400/70 h-16 ${getBgVariantStyle(bgVariant)} ${className} ${disabled  ? "opacity-45" : ""}`}
             {...props}
+            // disabled = {true}
         >
             {loading ?
                 <Spinner loading = {loading} />
