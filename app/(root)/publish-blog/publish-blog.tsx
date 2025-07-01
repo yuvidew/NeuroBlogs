@@ -40,7 +40,7 @@ const PublishBlog = () => {
     const onPress = async () => {
         setLoading(true);
         try {
-            await onCreateBlog({
+            const id = await onCreateBlog({
                 title: blog.title,
                 slug: blog.slug,
                 coverImage: selectImage,
@@ -55,6 +55,7 @@ const PublishBlog = () => {
                 likes: 0,
                 publishedAt : String(new Date())
             });
+            router.replace(`/(root)/details/${id}`)
         } catch (error) {
             console.error("Failed to create blog:", error);
         } finally {
