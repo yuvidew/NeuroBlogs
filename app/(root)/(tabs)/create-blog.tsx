@@ -9,6 +9,7 @@ import SelectField from '../_components/SelectField'
 import CustomButton from '@/components/CustomButton'
 import { useAiGenerateBlog } from '../hooks/useAiGenerateBlog'
 import { ReactNativeModal } from "react-native-modal"
+import { Link } from 'expo-router'
 
 
 const CreateBlog = () => {
@@ -97,6 +98,8 @@ const CreateBlog = () => {
         onPress={() => onGenerateBlog(form)}
       />
       {/* end to form */}
+
+    <Link href = "/(root)/publish-blog/publish-blog" > Go to publish </Link>
 
       {/* start to modal */}
       <ReactNativeModal isVisible={!error.error}>
