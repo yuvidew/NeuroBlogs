@@ -34,9 +34,10 @@ export const useFetchImages = (category: string) => {
             const imgResponse = await axios.get('https://api.unsplash.com/search/photos', {
                 params: {
                     query: `${category}`,
-                    client_id: "IkMsmUrqFx0S2L19NnKFkJ0RpdHNjpCJhYvGDmUyUiU"
+                    client_id: "l8DWdC0q_FXgM9ecvTP8FEGYDOOf_oN58Xyt5XO8Yyk"
                 }
             });
+
 
             const imgList: imagesListType[] = imgResponse.data.results.map((result: { urls: { regular: string } }) => ({ img_url: result.urls?.regular || "" }));
 
