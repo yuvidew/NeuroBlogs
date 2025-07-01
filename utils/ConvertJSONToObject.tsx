@@ -4,6 +4,8 @@ export const BlogSchema = z.object({
     title: z.string(),
     category: z.string(),
     content: z.string(),
+    tags: z.array(z.string()),
+    slug : z.string()
 });
 
 export const extractJsonFromText = (text: string) => {
