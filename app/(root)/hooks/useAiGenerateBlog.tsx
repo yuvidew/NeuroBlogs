@@ -40,7 +40,7 @@ export const useAiGenerateBlog = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<{ error: boolean, message: string }>({ error: true, message: "" })
     const { onBlog } = useCreatedBlogStorage()
-    
+
     /**
      * Custom React hook for generating a blog post using an AI model based on user-provided form data.
      * Handles loading state, error management, and blog validation/storage.
@@ -59,31 +59,41 @@ export const useAiGenerateBlog = () => {
     const onGenerateBlog = async (form: GenerateBlogFormType) => {
         setLoading(true);
         try {
-            const prompt = `Generate a blog post as a JSON object matching this interface:
+            const prompt = `You are an AI writing assistant. Generate a blog post in valid JSON format with the following structure:
+
             {
-                "title": string,
-                "category": string,
-                "content": string
+            "title": string,
+            "slug": string,
+            "category": string,
+            "tags": string[],
+            "content": string
             }
 
-            Use the following details:
+            Input:
             - Title: ${form.title}
             - Category: ${form.category}
             - Guidelines/Topics: ${form.content}
 
-            Requirements:
-            1. Output valid JSON only (no extra text).
-            2. Make the content easy to read with clear headings (e.g., "## Introduction").
-            3. Include bullet points to highlight key points or takeaways.
+            Instructions:
+            1. Return ONLY valid JSON (no commentary or explanation).
+            2. The "content" must be in Markdown (## Headings, - Bullet points).
+            3. Begin with a "## Introduction".
+            4. Include relevant headings and a "## Conclusion".
+            5. Keep the tone friendly and beginner/intermediate-friendly.
+            6. "tags" should be an array like ["JavaScript", "Frontend"].
+            7. Generate a URL-friendly "slug" from the title (e.g., lowercase, hyphen-separated).
 
-            Example output structure:
+            Example Output:
             {
-            "title": "...",
-            "category": "...",
-            "content": "## Introduction\n...\n\n- Point one\n- Point two\n\n## Conclusion"
+            "title": "Understanding JavaScript Closures",
+            "slug": "understanding-javascript-closures",
+            "category": "Programming",
+            "tags": ["JavaScript", "Functions", "Web Development"],
+            "content": "## Introduction\\nJavaScript closures are...\\n\\n## Key Concepts\\n- Functions can remember...\\n\\n## Conclusion\\nClosures are essential for..."
             }
 
-            Now, create the blog post based on the inputs above.`;
+            Generate the blog based on the inputs above. Output only valid JSON.`;
+
             const response = await generateText({
                 model: google("gemini-1.5-flash"),
                 prompt,
@@ -103,11 +113,11 @@ export const useAiGenerateBlog = () => {
                 })
                 console.log(`Failed to parse JSON from AI output. Raw output: ${rawText}`);
             }
-            
+
             try {
                 const validated = BlogSchema.parse(parsed);
+                console.log("validated" , validated);
                 onBlog(validated);
-                // console.log("validated" , validated);
                 router.replace("/(root)/publish-blog/publish-blog")
             } catch (zodError) {
                 setError({
@@ -120,7 +130,9 @@ export const useAiGenerateBlog = () => {
             onBlog({
                 title: "",
                 category: "",
-                content: ""
+                content: "",
+                tags : [""],
+                slug : ""
             })
 
             setError({
@@ -133,5 +145,5 @@ export const useAiGenerateBlog = () => {
         }
     };
 
-    return { onGenerateBlog, loading , error , setError};
+    return { onGenerateBlog, loading, error, setError };
 };
