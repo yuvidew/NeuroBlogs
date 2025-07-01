@@ -16,17 +16,36 @@ const markdownStyles = {
         fontFamily: 'Jakarta-Medium',
         fontSize: 16,
         lineHeight: 24,
-        color: '#333',
+        color: '#1f2937',
+    },
+    heading1: {
+        fontFamily: 'Jakarta-Medium',
+        fontSize: 28,
+        color: '#111827',
+        marginBottom: 10,
+    },
+    heading2: {
+        fontFamily: 'Jakarta-Medium',
+        fontSize: 22,
+        color: '#1f2937',
+        marginTop: 20,
+        marginBottom: 10,
     },
     paragraph: {
         marginBottom: 12,
     },
+
     list_item: {
         fontSize: 16,
         fontFamily: 'Jakarta-Medium',
+        color: '#374151',
     },
     strong: {
-        fontWeight: 'bold' as "bold",
+        fontFamily: 'Jakarta-Bold',
+        color: '#111827',
+    },
+    bullet_list: {
+        marginVertical: 8,
     },
 };
 
@@ -36,11 +55,11 @@ const Details = () => {
         id: id as Id<"blogs">
     })
 
-    if(!blog?._id) {
+    if (!blog?._id) {
         return (
-        <SafeAreaView className="bg-white h-full items-center justify-center">
-            <ActivityIndicator size="large" className="text-[#C67C4E]" />
-        </SafeAreaView>
+            <SafeAreaView className="bg-white h-full items-center justify-center">
+                <ActivityIndicator size="large" className="text-[#C67C4E]" />
+            </SafeAreaView>
         );
     }
 
@@ -48,23 +67,23 @@ const Details = () => {
         <ScrollView>
             {/* start to back button , save button */}
             <View className='flex flex-row items-center justify-between top-10 z-30 absolute w-full p-4 px-6' >
-                <TouchableOpacity onPress={() => router.back()} className="flex flex-row bg-primary-200/10 rounded-full size-11 items-center justify-center">
+                <TouchableOpacity onPress={() => router.replace("/(root)/(tabs)")} className="flex flex-row bg-primary-200/10 rounded-full size-11 items-center justify-center">
                     <Image source={icons.backArrow} className="size-5" tintColor={"#fff"} />
                 </TouchableOpacity>
 
                 <View className=' flex flex-row items-center justify-end gap-4' >
-                    <TouchableOpacity onPress={() => { 
+                    <TouchableOpacity onPress={() => {
                         //Todo :create a like func
                     }} className="flex flex-row bg-primary-200/10 rounded-full size-11 items-center justify-center">
                         <Image source={icons.heart} className="size-5" tintColor={"#fff"} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { 
+                    <TouchableOpacity onPress={() => {
                         //Todo :create a save func
                     }} className="flex flex-row bg-primary-200/10 rounded-full size-11 items-center justify-center">
                         <Image source={icons.save} className="size-5" tintColor={"#fff"} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => { 
+                    <TouchableOpacity onPress={() => {
                         //Todo :create a commit func
                     }} className="flex flex-row bg-primary-200/10 rounded-full size-11 items-center justify-center">
                         <Image source={icons.more} className="size-5" tintColor={"#fff"} />
