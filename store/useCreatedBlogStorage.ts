@@ -11,6 +11,8 @@ export const useCreatedBlogStorage = create<CreatedBlogStorageType>((set) => ({
         title : "",
         category : "",
         content : "",
+        tags : [""],
+        slug : ""
     },
     onBlog : (data) => set({blog : data})
 }))
