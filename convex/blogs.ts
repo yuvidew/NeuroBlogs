@@ -60,8 +60,8 @@ export const addLikes = mutation({
         if (!identity) throw new Error("Unauthorized");
 
         const blogs = await ctx.db
-        .query("blogs")
-        .filter((q) => q.eq(q.field("_id"), blogId))
+            .query("blogs")
+            .filter((q) => q.eq(q.field("_id"), blogId))
 
         const existingLike = await ctx.db
             .query("savedBlogs")
@@ -69,9 +69,9 @@ export const addLikes = mutation({
             .filter((q) => q.eq(q.field("userId"), identity.subject))
             .unique();
 
-        if(existingLike){
+        if (existingLike) {
             await ctx.db.delete(existingLike._id);
-            
+
             // await ctx.db.patch(blogId, {
             //     likes: Math.max((existingLike.likes ?? 1) - 1, 0),
             // });
@@ -100,3 +100,45 @@ export const getImageUrl = mutation({
         return await ctx.storage.getUrl(args.storageId)
     }
 })
+
+export const createBlog = mutation({
+    args: {
+        title: v.string(),
+        slug: v.string(),
+        content: v.string(),
+        coverImage: v.string(),
+        author: v.object({
+            id: v.string(),
+            name: v.string(),
+            image: v.string(),
+        }),
+        tags: v.array(v.string()),
+        categories: v.optional(v.string()),
+        likes: v.optional(v.number()), 
+        publishedAt : v.string()
+    },
+
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) throw new Error("Unauthorized");
+
+        if (identity.subject !== args.author.id) {
+            throw new Error("Invalid author.");
+        }
+
+        return await ctx.db.insert("blogs", {
+            title: args.title,
+            slug: args.slug,
+            content: args.content,
+            coverImage: args.coverImage,
+            author: args.author,
+            tags: args.tags,
+            categories: args.categories,
+            isPublished: true,
+            likes: args.likes ?? 0,
+            publishedAt : args.publishedAt
+        });
+    },
+});
+
