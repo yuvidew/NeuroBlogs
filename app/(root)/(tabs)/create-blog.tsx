@@ -17,7 +17,9 @@ const CreateBlog = () => {
   const [form, setForm] = useState({
     title: "",
     category: "",
-    content: ""
+    content: "",
+    slug : "",
+    tags : [""]
   })
 
 
@@ -99,7 +101,6 @@ const CreateBlog = () => {
       />
       {/* end to form */}
 
-    <Link href = "/(root)/publish-blog/publish-blog" > Go to publish </Link>
 
       {/* start to modal */}
       <ReactNativeModal isVisible={!error.error}>
